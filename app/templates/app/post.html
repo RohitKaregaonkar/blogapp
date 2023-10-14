@@ -284,7 +284,7 @@
                         Your email address will not be published. Required fields
                         are marked<span>*</span>
                     </p>
-                    <form action="post">
+                    <form method="post">
                         {% csrf_token %}
                         {% comment %} <textarea placeholder="Type your comment...."></textarea> {% endcomment %}
                         {{ form.content }}
