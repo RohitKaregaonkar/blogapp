@@ -284,12 +284,17 @@
                         Your email address will not be published. Required fields
                         are marked<span>*</span>
                     </p>
-                    <form action="">
-                        <textarea placeholder="Type your comment...."></textarea>
+                    <form action="post">
+                        {% csrf_token %}
+                        {% comment %} <textarea placeholder="Type your comment...."></textarea> {% endcomment %}
+                        {{ form.content }}
                         <div class="grid-3">
-                        <input type="text" placeholder="Name" />
+                        {% comment %} <input type="text" placeholder="Name" />
                         <input type="temail" placeholder="Email" />
-                        <input type="url" placeholder="Website (optional)" />
+                        <input type="url" placeholder="Website (optional)" /> {% endcomment %}
+                        {{ form.name }}
+                        {{ form.email }}
+                        {{ form.website }}
                         </div>
                         <button class="btn btn-primary rounded">
                         Post comment
