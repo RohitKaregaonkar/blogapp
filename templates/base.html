@@ -86,11 +86,11 @@
               <form method="POST">
                 {% csrf_token %}
                 {{ subscribe_form.email }}
+               
+                <button class="btn btn-primary">Subscribe</button>
                 {% if subscribe_success %}
-                  
                   <p>{{subscribe_success}}</p>
                 {% endif %}
-                <button class="btn btn-primary">Subscribe</button>
               </form>
             </div>
           </div>

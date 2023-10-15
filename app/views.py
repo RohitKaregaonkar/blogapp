@@ -15,8 +15,8 @@ def index(request):
         subscribe_form_result = SubscribeForm(request.POST)
         if subscribe_form_result.is_valid():
             subscribe_form_result.save()
-            subscribe_success = "Subscribed Successfully"
-             
+            subscribe_success = "Subscribed Successfully"  
+        return redirect('index')      
     
     context = {'top_posts': top_posts, 'new_posts': new_posts, 'subscribe_form': subscribe_form, 'subscribe_success': subscribe_success}
     return render(request, 'app/index.html', context)
