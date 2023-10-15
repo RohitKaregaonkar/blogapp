@@ -73,7 +73,7 @@
                 <div class="card">
                 <div class="post-img">
                     <img src="{{post.image.url}}" alt="" />
-                    <div class="tag">{{Post.tags.all.name}}</div>
+                    <div class="tag">{{post.tags.all.0.name}}</div>
                 </div>
                 <div class="card-content">
                     <h3>
@@ -113,7 +113,7 @@
                     <div class="card">
                     <div class="post-img">
                         <img src="{{post.image.url}}" alt="" />
-                        <div class="tag">Tag name</div>
+                        <div class="tag">{{post.tags.all.0.name}}</div>
                     </div>
                     <div class="card-content">
                         <h3>
