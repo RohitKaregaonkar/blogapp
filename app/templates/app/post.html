@@ -155,23 +155,24 @@
 
                                 </div>
                                 
+                                {% for reply in comment.replies.all %}
                                 <div class="public-reply">
-                                <div class="author">
-                                    <div class="profile-pic">
-                                    <img src="../images/author.svg" alt="" />
+                                    <div class="author">
+                                        <div class="profile-pic">
+                                        <img src="../images/author.svg" alt="" />
+                                        </div>
+                                        <div class="details">
+                                        <p>{{ reply.name }}</p>
+                                        <small>{{ reply.date|date }}</small>
+                                        </div>
                                     </div>
-                                    <div class="details">
-                                    <p>Author name</p>
-                                    <small>June 20, 2022</small>
+                                    <div class="comment">
+                                        <p>
+                                            {{ reply.content }}
+                                        </p>
                                     </div>
                                 </div>
-                                <div class="comment">
-                                    <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. Tempora magnam minima harum, dignissimos
-                                    </p>
-                                </div>
-                            </div>
+                                {% endfor %}
                         </div>
                         {% comment %} </div> {% endcomment %}
                         {% endfor %}

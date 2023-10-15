@@ -13,7 +13,7 @@ def index(request):
 
 def post_page(request, slug):
     post = Post.objects.get(slug= slug)
-    comments = Comments.objects.filter(post= post)
+    comments = Comments.objects.filter(post= post, parent= None)
     form = CommentForm()
     
     if request.POST:
