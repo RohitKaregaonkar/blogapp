@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Blog | The Super Blog{% endblock title %}
 
@@ -97,7 +98,7 @@
                         <div class="user-comment">
                             <div class="author">
                                 <div class="profile-pic">
-                                <img src="../images/author.svg" alt="" />
+                                <img src="{% static 'app/author.svg' %}" alt="" />
                                 </div>
                                 <div class="details">
                                 <p>{{ comment.name }}</p>
@@ -159,7 +160,7 @@
                                 <div class="public-reply">
                                     <div class="author">
                                         <div class="profile-pic">
-                                        <img src="../images/author.svg" alt="" />
+                                        <img src="{% static 'app/author.svg' %}" alt="" />
                                         </div>
                                         <div class="details">
                                         <p>{{ reply.name }}</p>
