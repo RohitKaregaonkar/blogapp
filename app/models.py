@@ -41,3 +41,7 @@ class Comments(models.Model):
 class Subscribe(models.Model):
     email = models.EmailField(max_length=120)
     date = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.email
+
