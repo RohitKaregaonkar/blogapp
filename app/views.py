@@ -6,8 +6,10 @@ from django.urls import reverse
 
 # Create your views here.
 def index(request):
-    posts = Post.objects.all()
-    context = {'posts': posts}
+    top_posts = Post.objects.all().order_by('-view_count')[0:3]
+    new_posts = Post.objects.all().order_by('-last_updated')[0:3]
+    
+    context = {'top_posts': top_posts, 'new_posts': new_posts}
     return render(request, 'app/index.html', context)
 
 

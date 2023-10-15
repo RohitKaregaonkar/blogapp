@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Blog | Welcome to Blog{% endblock title %}
 
@@ -67,12 +68,12 @@
         <h1 class="sec-title">Top blogs</h1>
         <div class="grid-3">
           <!-- card -->
-          {% for post in posts %}
+          {% for post in top_posts %}
             <a href="{% url 'post_page' post.slug %}">
                 <div class="card">
                 <div class="post-img">
                     <img src="{{post.image.url}}" alt="" />
-                    <div class="tag">Tag name</div>
+                    <div class="tag">{{post.tags.all0.name}}</div>
                 </div>
                 <div class="card-content">
                     <h3>
@@ -80,7 +81,7 @@
                     </h3>
                     <div class="author">
                     <div class="profile-pic">
-                        <img src="images/author.svg" alt="" />
+                        <img src="{% static 'app/author.svg' %}" alt="" />
                     </div>
                     <div class="details">
                         <p>Author name</p>
@@ -106,7 +107,7 @@
         <h1 class="sec-title">New blogs</h1>
         <div class="grid-3">
 
-            {% for post in posts %}
+            {% for post in new_posts %}
                 <!-- card -->
                 <a href="{% url 'post_page' post.slug %}">
                     <div class="card">
@@ -120,7 +121,7 @@
                         </h3>
                         <div class="author">
                         <div class="profile-pic">
-                            <img src="images/author.svg" alt="" />
+                            <img src="{% static 'app/author.svg' %}" alt="" />
                         </div>
                         <div class="details">
                             <p>Author name</p>
