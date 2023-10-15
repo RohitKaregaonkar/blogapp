@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from app.models import Post, Comments
-from app.forms import CommentForm
+from app.forms import CommentForm, SubscribeForm
 from django.http import HttpResponse
 from django.urls import reverse
 
@@ -8,8 +8,9 @@ from django.urls import reverse
 def index(request):
     top_posts = Post.objects.all().order_by('-view_count')[0:3]
     new_posts = Post.objects.all().order_by('-last_updated')[0:3]
+    subscribe_form = SubscribeForm()
     
-    context = {'top_posts': top_posts, 'new_posts': new_posts}
+    context = {'top_posts': top_posts, 'new_posts': new_posts, 'subscribe_form': subscribe_form}
     return render(request, 'app/index.html', context)
 
 

@@ -84,14 +84,8 @@
             <h2>Subscribe</h2>
             <div class="newsletter">
               <form method="POST">
-                <input
-                  type="email"
-                  name="email"
-                  maxlength="100"
-                  placeholder="Enter your email"
-                  required=""
-                  id="id_email"
-                />
+                {% csrf_token %}
+                {{ subscribe_form.email }}
                 <button class="btn btn-primary">Subscribe</button>
               </form>
             </div>
