@@ -22,8 +22,17 @@ def post_page(request, slug):
             comment = comment_form.save(commit=False)
             postid = request.POST.get('post_id')
             post = Post.objects.get(id= postid)
-            comment.post = post
-            comment.save()
+
+            if request.POST.get('parent'):
+                parent_id = request.POST.get('parent')
+                parent = Comments.objects.get(id= parent_id)
+                comment.post = post
+                comment.parent = parent
+                comment.save()
+            else:
+                comment.post = post
+                comment.save()
+                
             return redirect(reverse('post_page', kwargs={'slug': post.slug}))
     
     if post.view_count is None:
