@@ -55,3 +55,9 @@ def post_page(request, slug):
     context = {'post': post, 'form': form, 'comments': comments}
     return render(request, "app/post.html", context)
 
+
+
+def tag_page(request, slug):
+    context = {}
+    return render(request, 'app/tag.html', context)
+
