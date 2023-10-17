@@ -60,6 +60,9 @@ def post_page(request, slug):
 def tag_page(request, slug):
     tag = Tag.objects.get(slug= slug)
     top_posts = Post.objects.filter(tags__in=[tag.id]).order_by('-view_count')
-    context = {'tag': tag, 'top_posts': top_posts}
+    recent_posts = Post.objects.filter(tags__in=[tag.id]).order_by('-last_updated')
+    featured_posts = Post.objects.filter(tags__in=[tag.id]).filter(featured= True).order_by('-last_updated')
+    tags = Tag.objects.all()
+    context = {'tag': tag, 'top_posts': top_posts, 'recent_posts': recent_posts, 'featured_posts': featured_posts, 'tags': tags}
     return render(request, 'app/tag.html', context)
 
