@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from app.models import Post, Comments
+from app.models import Post, Comments, Tag
 from app.forms import CommentForm, SubscribeForm
 from django.http import HttpResponse
 from django.urls import reverse
@@ -58,6 +58,8 @@ def post_page(request, slug):
 
 
 def tag_page(request, slug):
-    context = {}
+    tag = Tag.objects.get(slug= slug)
+    top_posts = Post.objects.filter(tags__in=[tag.id]).order_by('-view_count')
+    context = {'tag': tag, 'top_posts': top_posts}
     return render(request, 'app/tag.html', context)
 
