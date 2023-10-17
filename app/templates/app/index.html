@@ -52,7 +52,7 @@
               {{featured_posts.title}}.
             </h1>
             <p class="des">
-              {{featured_posts.content}}
+              {{featured_posts.content|truncatechars:300}}
             </p>
             <a class="learn" href="{% url 'post_page' featured_posts.slug %}"
               >Learn more <span class="material-icons"> trending_flat </span></a
