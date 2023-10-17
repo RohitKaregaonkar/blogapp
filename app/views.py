@@ -8,6 +8,7 @@ from django.urls import reverse
 def index(request):
     top_posts = Post.objects.all().order_by('-view_count')[0:3]
     new_posts = Post.objects.all().order_by('-last_updated')[0:3]
+    featured_posts = Post.objects.all().filter(featured= True)[0]
     subscribe_form = SubscribeForm()
     subscribe_success = None
     
@@ -18,7 +19,7 @@ def index(request):
             subscribe_success = "Subscribed Successfully"  
         return redirect('index')      
     
-    context = {'top_posts': top_posts, 'new_posts': new_posts, 'subscribe_form': subscribe_form, 'subscribe_success': subscribe_success}
+    context = {'top_posts': top_posts, 'new_posts': new_posts, 'subscribe_form': subscribe_form, 'featured_posts': featured_posts,'subscribe_success': subscribe_success}
     return render(request, 'app/index.html', context)
 
 
