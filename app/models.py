@@ -26,6 +26,7 @@ class Post(models.Model):
     tags =  models.ManyToManyField(Tag, blank=True, related_name='post')
     view_count = models.IntegerField(null=True, blank=True)
     featured = models.BooleanField()
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     
     
 class Comments(models.Model):
