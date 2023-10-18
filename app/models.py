@@ -25,7 +25,7 @@ class Profile(models.Model):
     
     def save(self, *args,**kwargs):
         if not self.id:
-            self.slug = slugify(User.username)
+            self.slug = slugify(self.user.username)
         return super(Profile, self).save(*args, **kwargs)
     
     def __str__(self):
@@ -63,3 +63,9 @@ class Subscribe(models.Model):
     
     def __str__(self):
         return self.email
+    
+    
+class WebsiteMeta(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.CharField(max_length=500)
+    about = models.TextField()
