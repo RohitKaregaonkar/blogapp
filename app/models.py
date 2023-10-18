@@ -17,6 +17,22 @@ class Tag(models.Model):
         return self.name
 
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_image = models.ImageField()
+    slug = models.SlugField(max_length=120, unique=True)
+    bio = models.CharField(max_length=200)
+    
+    def save(self, *args,**kwargs):
+        if not self.id:
+            self.slug = slugify(User.username)
+        return super(Profile, self).save(*args, **kwargs)
+    
+    def __str__(self):
+        return self.user.first_name
+    
+
+
 class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -27,6 +43,7 @@ class Post(models.Model):
     view_count = models.IntegerField(null=True, blank=True)
     featured = models.BooleanField()
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    profiles = models.ForeignKey(Profile, on_delete=models.CASCADE, blank=True, null=True)
     
     
 class Comments(models.Model):
@@ -46,18 +63,3 @@ class Subscribe(models.Model):
     
     def __str__(self):
         return self.email
-    
-    
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_image = models.ImageField()
-    slug = models.SlugField(max_length=120, unique=True)
-    bio = models.CharField(max_length=200)
-    
-    def save(self, *args,**kwargs):
-        if not self.id:
-            self.slug = slugify(User.username)
-        return super(Profile, self).save(*args, **kwargs)
-    
-    def __str__(self):
-        return self.user.first_name
