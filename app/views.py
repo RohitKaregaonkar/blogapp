@@ -72,6 +72,6 @@ def author_page(request, slug):
     top_posts = Post.objects.filter(tags__in=[profile.id]).order_by('-view_count')
     recent_posts = Post.objects.filter(tags__in=[profile.id]).order_by('-last_updated')
     featured_posts = Post.objects.filter(tags__in=[profile.id]).filter(featured= True).order_by('-last_updated')
-    tags = Tag.objects.all()
-    context = {'profile': profile, 'top_posts': top_posts, 'recent_posts': recent_posts, 'featured_posts': featured_posts, 'tags': tags}
+    authors = Profile.objects.all()
+    context = {'profile': profile, 'top_posts': top_posts, 'recent_posts': recent_posts, 'featured_posts': featured_posts, 'authors': authors}
     return render(request, 'app/author.html', context)
