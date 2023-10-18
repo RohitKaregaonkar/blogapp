@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from app.models import Post, Comments, Tag, Profile
+from app.models import Post, Comments, Tag, Profile, WebsiteMeta
 from app.forms import CommentForm, SubscribeForm
 from django.http import HttpResponse
 from django.urls import reverse
@@ -11,13 +11,21 @@ def index(request):
     featured_posts = Post.objects.all().filter(featured= True)[0]
     subscribe_form = SubscribeForm()
     subscribe_success = None
+    website_info = None
+    
+    if WebsiteMeta.objects.all().exists():
+        website_info = WebsiteMeta.objects.all()[0]
+
+    if featured_blog:
+        featured_blog = featured_blog[0]
     
     if request.POST:
-        subscribe_form_result = SubscribeForm(request.POST)
-        if subscribe_form_result.is_valid():
-            subscribe_form_result.save()
+        subscribe_form = SubscribeForm(request.POST)
+        if subscribe_form.is_valid():
+            subscribe_form.save()
             subscribe_success = "Subscribed Successfully"  
-        return redirect('index')      
+            subscribe_form = SubscribeForm()
+          
     
     context = {'top_posts': top_posts, 'new_posts': new_posts, 'subscribe_form': subscribe_form, 'featured_posts': featured_posts,'subscribe_success': subscribe_success}
     return render(request, 'app/index.html', context)
