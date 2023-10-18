@@ -8,7 +8,7 @@ from django.urls import reverse
 def index(request):
     top_posts = Post.objects.all().order_by('-view_count')[0:3]
     new_posts = Post.objects.all().order_by('-last_updated')[0:3]
-    featured_posts = Post.objects.all().filter(featured= True)[0]
+    featured_posts = Post.objects.all().filter(featured= True)
     subscribe_form = SubscribeForm()
     subscribe_success = None
     website_info = None
@@ -16,8 +16,8 @@ def index(request):
     if WebsiteMeta.objects.all().exists():
         website_info = WebsiteMeta.objects.all()[0]
 
-    if featured_blog:
-        featured_blog = featured_blog[0]
+    if featured_posts:
+        featured_posts = featured_posts[0]
     
     if request.POST:
         subscribe_form = SubscribeForm(request.POST)
@@ -27,7 +27,7 @@ def index(request):
             subscribe_form = SubscribeForm()
           
     
-    context = {'top_posts': top_posts, 'new_posts': new_posts, 'subscribe_form': subscribe_form, 'featured_posts': featured_posts,'subscribe_success': subscribe_success}
+    context = {'top_posts': top_posts, 'website_info':website_info, 'new_posts': new_posts, 'subscribe_form': subscribe_form, 'featured_posts': featured_posts,'subscribe_success': subscribe_success}
     return render(request, 'app/index.html', context)
 
 
