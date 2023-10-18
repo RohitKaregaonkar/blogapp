@@ -23,6 +23,7 @@ def index(request):
         subscribe_form = SubscribeForm(request.POST)
         if subscribe_form.is_valid():
             subscribe_form.save()
+            request.session['subscribed'] = True
             subscribe_success = "Subscribed Successfully"  
             subscribe_form = SubscribeForm()
           
