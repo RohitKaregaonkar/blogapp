@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from app.models import Post, Comments, Tag
+from app.models import Post, Comments, Tag, Profile
 from app.forms import CommentForm, SubscribeForm
 from django.http import HttpResponse
 from django.urls import reverse
