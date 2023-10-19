@@ -89,10 +89,17 @@
                                 <form action="{% url 'like_post' post.slug %}" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="post_id" value="{{post.id}}">
-                                    <button type="submit" class="btn btn-info">
-                                        <i class="uil uil-heart"></i> 
-                                        <span>200</span>
-                                    </button>
+                                    {% if is_liked %}
+                                        <button type="submit">
+                                            <i class="fa-solid fa-heart"></i> 
+                                            <span>{{number_of_likes}}</span>
+                                        </button>
+                                    {% else %}
+                                        <button type="submit">
+                                            <i class="uil uil-heart"></i> 
+                                            <span>{{number_of_likes}}</span>
+                                        </button>
+                                    {% endif %}
                                 </form>
                             </div>
                             
