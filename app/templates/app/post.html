@@ -37,21 +37,21 @@
                     </div>
                     <div class="track">
                         {% if user.is_authenticated %}
-                    <form action="{% url 'bookmark_post' post.slug %}" method="POST">
-                        {% csrf_token %}
-                        <input type="hidden" name="post_id" value="{{post.id}}">
-                        {% if is_bookmarked %}
-                        <button type="submit" class="btn btn-info">
-                            <i class="fa-solid fa-bookmark"></i>
-                            <p class="bookmark">Remove Bookmark</p>
-                        </button>
-                        {% else %}
-                        <button type="submit" class="btn btn-info">
-                            <i class="uil uil-bookmark-full"></i>
-                            <p class="bookmark">Bookmark</p>
-                        </button>
-                        {% endif %}
-                    </form>
+                        <form action="{% url 'bookmark_post' post.slug %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="post_id" value="{{post.id}}">
+                            {% if is_bookmarked %}
+                            <button type="submit" class="btn btn-info">
+                                <i class="fa-solid fa-bookmark"></i>
+                                <p class="bookmark">Remove Bookmark</p>
+                            </button>
+                            {% else %}
+                            <button type="submit" class="btn btn-info">
+                                <i class="uil uil-bookmark-full"></i>
+                                <p class="bookmark">Bookmark</p>
+                            </button>
+                            {% endif %}
+                        </form>
                         {% else %}
                         <a class="track" href="{% url 'login' %}">
                         <i class="uil uil-bookmark-full"></i>
@@ -84,13 +84,20 @@
                         </div>
                         <div class="social-share">
                         <div class="reactions">
+
                             <div class="likes">
-                            <i class="uil uil-heart"></i> <span>200</span>
+                                <form action="{% url 'like_post' post.slug %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="post_id" value="{{post.id}}">
+                                    <i class="uil uil-heart"></i> <span>200</span>
+                                </form>
                             </div>
+                            
                             <div class="total-comments">
                             <i class="uil uil-comment-alt"></i>
                             <span>10</span>
                             </div>
+
                         </div>
                         <div class="share">
                             <div class="social">
