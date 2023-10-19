@@ -93,19 +93,19 @@
                                         {% if is_liked %}
                                             <button type="submit">
                                                 <i class="fa-solid fa-heart"></i> 
-                                                <p class="bookmark">Liked</p>
                                             </button>
+                                            <span>{{number_of_likes}}</span>
                                         {% else %}
                                             <button type="submit">
-                                                <i class="uil uil-heart"></i> 
-                                                <p class="bookmark">Like</p>
+                                                <i class="uil uil-heart"></i>
                                             </button>
+                                            <span>{{number_of_likes}}</span>
                                         {% endif %}
                                     </form>
                                 {% else %}
                                     <a class="track" href="{% url 'login' %}">
                                     <i class="uil uil-bookmark-full"></i>
-                                    <p class="bookmark">Like</p>
+                                    <span>{{number_of_likes}}</span>
                                     </a><br>
                                 {% endif %}
                             </div>
