@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from app.models import Post, Comments, Tag, Profile, WebsiteMeta
-from app.forms import CommentForm, SubscribeForm
+from app.forms import CommentForm, SubscribeForm, NewUserForm
 from django.http import HttpResponse
 from django.urls import reverse
 
@@ -105,5 +105,6 @@ def about_page(request):
 
 
 def register_user(request):
-    context = {}
+    form = NewUserForm()
+    context = {'form': form}
     return render(request, 'registration/registration.html', context)
