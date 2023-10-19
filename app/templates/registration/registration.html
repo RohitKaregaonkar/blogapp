@@ -26,7 +26,6 @@
                     </div>
                 {% endfor %}
             {% endif %}
-            
             <div class="inputs">
               <div>
                 <div class="search-bar s-active input">
@@ -87,7 +86,7 @@
                 SIGN UP <span class="material-icons"> arrow_right_alt </span>
               </button>
               <center>
-                <p>Already have an account? <a href="login.html">Login</a></p>
+                <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
               </center>
             </div>
           </center>
