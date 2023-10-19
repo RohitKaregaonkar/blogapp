@@ -44,6 +44,7 @@ class Post(models.Model):
     featured = models.BooleanField()
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     profiles = models.ForeignKey(Profile, on_delete=models.CASCADE, blank=True, null=True)
+    bookmarks = models.ManyToManyField(User, related_name='bookmarks', default=None, blank=True, null=True)
     
     
 class Comments(models.Model):
