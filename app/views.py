@@ -135,3 +135,6 @@ def bookmark_post(request, slug):
     else:
         post.bookmarks.add(request.user)
     return HttpResponseRedirect(reverse('post_page', args=[str(slug)]))
+
+def like_post(request, slug):
+    pass
