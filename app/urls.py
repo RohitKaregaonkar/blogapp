@@ -10,4 +10,5 @@ urlpatterns = [
     path('search/', views.search_post, name='search_page'),
     path('about/', views.about_page, name='about_page'),
     path('accounts/register/', views.register_user, name='register'),
+    path('bookmark/<slug:slug>', views.bookmark_post, name='bookmark_post'),
 ]
