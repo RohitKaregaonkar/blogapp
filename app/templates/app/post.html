@@ -86,21 +86,28 @@
                         <div class="reactions">
 
                             <div class="likes">
-                                <form action="{% url 'like_post' post.slug %}" method="post">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="post_id" value="{{post.id}}">
-                                    {% if is_liked %}
-                                        <button type="submit">
-                                            <i class="fa-solid fa-heart"></i> 
-                                            <span>{{number_of_likes}}</span>
-                                        </button>
-                                    {% else %}
-                                        <button type="submit">
-                                            <i class="uil uil-heart"></i> 
-                                            <span>{{number_of_likes}}</span>
-                                        </button>
-                                    {% endif %}
-                                </form>
+                                {% if user.is_authenticated %}
+                                    <form action="{% url 'like_post' post.slug %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="post_id" value="{{post.id}}">
+                                        {% if is_liked %}
+                                            <button type="submit">
+                                                <i class="fa-solid fa-heart"></i> 
+                                                <p class="bookmark">Likes</p>
+                                            </button>
+                                        {% else %}
+                                            <button type="submit">
+                                                <i class="uil uil-heart"></i> 
+                                                <p class="bookmark">Likes</p>
+                                            </button>
+                                        {% endif %}
+                                    </form>
+                                {% else %}
+                                    <a class="track" href="{% url 'login' %}">
+                                    <i class="uil uil-bookmark-full"></i>
+                                    <p class="bookmark">Likes</p>
+                                    </a><br>
+                                {% endif %}
                             </div>
                             
                             <div class="total-comments">

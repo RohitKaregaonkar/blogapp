@@ -50,7 +50,6 @@ def post_page(request, slug):
     liked = False
     if post.likes.filter(id = request.user.id).exists():
         liked = True
-    number_of_likes = post.number_of_likes()
     is_liked = liked
     
     if request.POST:
@@ -78,7 +77,7 @@ def post_page(request, slug):
         post.view_count = post.view_count + 1
     post.save()
     context = {'post': post, 'form': form, 'is_bookmarked':is_bookmarked, 'comments': comments,
-               'is_liked': is_liked, 'number_of_likes': number_of_likes}
+               'is_liked': is_liked}
     return render(request, "app/post.html", context)
 
 
