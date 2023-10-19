@@ -1,5 +1,7 @@
 from django import forms
 from app.models import Comments, Subscribe
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 class CommentForm(forms.ModelForm):
     class Meta:
@@ -22,3 +24,9 @@ class SubscribeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['email'].widget.attrs['placeholder'] = "Enter your email here"
+        
+        
+class NewUserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = {'username', 'email', 'password1', 'password2'}
