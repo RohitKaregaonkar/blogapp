@@ -123,6 +123,8 @@ def bookmark_post(request, slug):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
     #get_object_or_404 is a function which does a get call on any given model that you pass.
 
-    post.bookmarks.add(request.user)
-    
-    return HttpResponseRedirect(reverse('post_page', args=[str(slug)])) 
+    if post.bookmarks.filter(id=request.user.id).exists():
+        post.bookmarks.remove(request.user)
+    else:
+        post.bookmarks.add(request.user)
+    return HttpResponseRedirect(reverse('post_page', args=[str(slug)]))
