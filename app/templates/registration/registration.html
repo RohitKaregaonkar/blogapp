@@ -12,7 +12,8 @@
           <h1>Sign Up</h1>
         </div>
 
-        <form action="#" class="form">
+        <form method="post" class="form">
+          {% csrf_token %}
           <center>
             <div class="logo f-logo">
               <i class="fa-brands fa-blogger"></i>
