@@ -30,7 +30,8 @@ def index(request):
             subscribe_form = SubscribeForm()
           
     
-    context = {'top_posts': top_posts, 'website_info':website_info, 'new_posts': new_posts, 'subscribe_form': subscribe_form, 'featured_posts': featured_posts,'subscribe_success': subscribe_success}
+    context = {'top_posts': top_posts, 'website_info':website_info, 'new_posts': new_posts, 
+               'subscribe_form': subscribe_form, 'featured_posts': featured_posts,'subscribe_success': subscribe_success}
     return render(request, 'app/index.html', context)
 
 
@@ -38,6 +39,12 @@ def post_page(request, slug):
     post = Post.objects.get(slug= slug)
     comments = Comments.objects.filter(post= post, parent= None)
     form = CommentForm()
+    
+    # Bookmark logic
+    bookmarked = False
+    if post.bookmarks.filter(id = request.user.id).exists():
+        bookmarked = True
+    is_bookmarked = bookmarked
     
     if request.POST:
         comment_form = CommentForm(request.POST)
@@ -63,7 +70,7 @@ def post_page(request, slug):
     else:
         post.view_count = post.view_count + 1
     post.save()
-    context = {'post': post, 'form': form, 'comments': comments}
+    context = {'post': post, 'form': form, 'is_bookmarked':is_bookmarked, 'comments': comments}
     return render(request, "app/post.html", context)
 
 
