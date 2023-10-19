@@ -50,6 +50,7 @@ def post_page(request, slug):
     liked = False
     if post.likes.filter(id = request.user.id).exists():
         liked = True
+    number_of_likes = post.number_of_likes()
     is_liked = liked
     
     if request.POST:
