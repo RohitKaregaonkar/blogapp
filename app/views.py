@@ -117,3 +117,7 @@ def register_user(request):
         
     context = {'form': form}
     return render(request, 'registration/registration.html', context)
+
+
+def bookmark_post(request):
+    pass
