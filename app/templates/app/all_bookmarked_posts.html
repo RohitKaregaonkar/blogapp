@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
-{% block title %}Blog | All Bookmarked Posts{% endblock title %}
-{% block content %}
 
+{% block title %}Blog | Bookmarked Posts{% endblock title %}
+
+{% block content %}
 <main>
   <div class="container">
     <div class="page-top">
@@ -10,7 +11,7 @@
           <a href="" class="learn">
             <span class="material-icons"> keyboard_return </span> Go back
           </a>
-          <h1>All Bookmarked Posts</h1>
+          <h1>All Posts</h1>
         </div>
       </div>
     </div>
@@ -19,13 +20,15 @@
 <section class="sp">
   <div class="container">
     <div class="blog-tags">
+    
     {% for post in all_bookmarked_posts  %}
     <p class="tag">
       <a style="color: white;" href="{% url 'post_page' post.slug %}">{{post.title}}</a>
     </p>
     {% endfor %}
+    
   </div>
   </div>
-</section>
-
+  </section>
+</main>
 {% endblock content %}
