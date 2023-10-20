@@ -41,7 +41,7 @@
           <a href="{% url 'all_posts' %}">All Posts</a>
           {% if user.is_authenticated %}
           <a href="{% url 'all_bookmarked_posts' %}">Bookmarked Posts</a>
-          {% comment %} <a href="{% url 'all_liked_posts' %}">Liked Posts</a> {% endcomment %}
+          <a href="{% url 'all_liked_posts' %}">Liked Posts</a>
           {% endif %}
         </div>
         <div class="action-btn">
