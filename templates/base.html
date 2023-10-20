@@ -38,7 +38,7 @@
         <div class="links">
           <a href="{% url "index" %}">Home</a>
           <a href="{% url "about_page" %}">About</a>
-          <a href="pages/author.html">All Posts</a>
+          <a href="{% url "all_bookmarked_posts" %}">All Posts</a>
         </div>
         <div class="action-btn">
           {% if user.is_authenticated %}
