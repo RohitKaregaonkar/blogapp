@@ -77,8 +77,20 @@ def post_page(request, slug):
     else:
         post.view_count = post.view_count + 1
     post.save()
+    
+    
+    #sidebar
+    recent_posts = Post.objects.exclude(id = post.id).order_by('-last_updated')[0:3]
+    top_authors = User.objects.annotate(number=Count('post')).order_by('-number')
+    tags = Tag.objects.all()
+    related_posts = Post.objects.exclude(id = post.id).filter(author=post.author)[0:3]
+    
     context = {'post': post, 'form': form, 'is_bookmarked':is_bookmarked, 'comments': comments,
-               'is_liked': is_liked, 'number_of_likes': number_of_likes}
+               'is_liked': is_liked, 'number_of_likes': number_of_likes,
+               'recent_posts': recent_posts, 'top_authors': top_authors,
+               'related_posts': related_posts, 'tags': tags
+               }
+    
     return render(request, "app/post.html", context)
 
 
